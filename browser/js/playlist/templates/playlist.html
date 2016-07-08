@@ -1,16 +1,23 @@
 <div class="well">
-  <form class="form-horizontal">
+
+  <form class="form-horizontal" name="playlistForm">
     <fieldset>
       <legend>New Playlist</legend>
       <div class="form-group">
         <label class="col-xs-2 control-label">Name</label>
         <div class="col-xs-10">
-          <input class="form-control" type="text" ng-model="nameOfPlaylist">
+          <input name="input" class="form-control" type="text" ng-model="nameOfPlaylist"  ng-maxlength="16" required>
         </div>
       </div>
       <div class="form-group">
         <div class="col-xs-10 col-xs-offset-2">
-          <button type="submit" class="btn btn-success" ng-click="submitPlaylist()">Create Playlist</button>
+             <!-- check form/input for validity -->
+             <!-- HELP TICKET FOR MULTIPLE INVALID STUFF -->
+             <div ng-if="playlistForm.input.$invalid && !playlistForm.input.$pristine" class="alert alert-warning">Please enter a name</div>
+
+          <button type="submit" class="btn btn-success" ng-click="submitPlaylist()" ng-disabled="
+          playlistForm.input.$invalid">Create Playlist</button>
+
         </div>
       </div>
     </fieldset>
